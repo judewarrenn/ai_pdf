@@ -12,6 +12,15 @@
   --radius: 8px;
 }
 
+body.dark {
+  --bg: #111418;
+  --card: #1a1f26;
+  --text: #eef2f6;
+  --muted: #9aa4b2;
+  --border: #2c3440;
+  --accent-soft: #2a1719;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -47,14 +56,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 12px;
 }
 
 .brand-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .brand-tag {
@@ -79,7 +89,38 @@ body {
 
 .tagline {
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
+  line-height: 1.3;
+  margin-left: 12px;
+  margin-right: auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.theme-btn:hover {
+  background: var(--card);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ----- Stage & Cards ----- */
@@ -186,6 +227,11 @@ body {
 .dropzone.dragover {
   background: #ffecec;
   border-color: var(--accent-dark);
+}
+
+body.dark .dropzone:hover,
+body.dark .dropzone.dragover {
+  background: #361d20;
 }
 
 .dropzone-cta {
@@ -405,14 +451,14 @@ select {
 
 .bar-fill {
   height: 100%;
-  background: #e53935;
+  background: var(--accent);
   border-radius: 999px;
 }
 
 .bar-count {
   text-align: right;
   font-weight: 600;
-  color: #66707a;
+  color: var(--muted);
 }
 
 /* ----- Summary ----- */
@@ -434,6 +480,39 @@ select {
   margin-bottom: 0;
 }
 
+/* ----- Dark Mode Surfaces ----- */
+body.dark textarea,
+body.dark select {
+  background: #14181e;
+  color: var(--text);
+}
+
+body.dark textarea:focus,
+body.dark select:focus {
+  background: #181d24;
+}
+
+body.dark .settings-box,
+body.dark .stat,
+body.dark .summary,
+body.dark .btn.small {
+  background: #14181e;
+  color: var(--text);
+}
+
+body.dark .bar-track {
+  background: #252c36;
+}
+
+body.dark .btn.secondary {
+  background: #262d38;
+  color: var(--text);
+}
+
+body.dark .btn.secondary:hover {
+  background: #313a48;
+}
+
 /* ----- Footer ----- */
 .footer {
   margin-top: 40px;
@@ -444,6 +523,12 @@ select {
   color: var(--muted);
   font-size: 0.85rem;
 }
+
+@media (max-width: 780px) {
+  .tagline {
+    font-size: 0.78rem;
+    margin-left: 8px;
+  }
 
 @media (max-width: 640px) {
   .logo {
