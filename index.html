@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocScribe | AI Text Analysis and Summarizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <span class="brand-tag">PDF &amp; TEXT</span>
+        <h1 class="logo">Doc<span>Scribe</span></h1>
+      </div>
+      <p class="tagline">Analyze PDFs or pasted text for instant word metrics and summaries</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- INPUT & SETTINGS STAGE -->
+    <section class="stage">
+      <div class="container">
+        <div class="card main-card" id="input-section">
+          <div class="card-top">
+            <h2>Upload Your Document</h2>
+            <div class="tabs">
+              <button type="button" class="tab active" data-tab="pdf">Upload PDF</button>
+              <button type="button" class="tab" data-tab="text">Type or Paste Text</button>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-pdf">
+            <label class="dropzone" id="dropzone" for="pdfInput">
+              <span class="dropzone-cta">Choose PDF File</span>
+              <span class="dropzone-sub">or drag and drop a PDF document here</span>
+              <span id="fileName" class="file-name"></span>
+            </label>
+            <input type="file" id="pdfInput" accept="application/pdf" hidden />
+          </div>
+
+          <div class="tab-panel hidden" id="panel-text">
+            <textarea id="textInput" rows="10" placeholder="Type or paste your text here..."></textarea>
+          </div>
+
+          <div class="settings-box">
+            <div class="settings-title">Summary Options</div>
+            <div class="row options">
+              <div class="field">
+                <label for="summaryLength">Summary length</label>
+                <select id="summaryLength">
+                  <option value="short">Short (2 to 3 sentences)</option>
+                  <option value="medium" selected>Medium (one paragraph)</option>
+                  <option value="long">Detailed (several paragraphs)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="summaryStyle">Summary style</label>
+                <select id="summaryStyle">
+                  <option value="paragraph" selected>Paragraph</option>
+                  <option value="bullets">Bullet points</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button type="button" id="analyzeBtn" class="btn primary">Analyze and Summarize</button>
+            <button type="button" id="clearBtn" class="btn secondary">Clear</button>
+          </div>
+          <p id="status" class="status" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="results" class="hidden">
+      <div class="container">
+
+        <div class="card">
+          <h2>Text Analysis</h2>
+          <div class="stats" id="stats"></div>
+        </div>
+
+        <div class="card">
+          <h2>Most Frequent Words</h2>
+          <p class="hint">Common words such as "the" and "and" are left out so the results are more meaningful.</p>
+          <div id="wordChart" class="chart"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h2>AI Summary</h2>
+            <button type="button" id="copyBtn" class="btn small">Copy summary</button>
+          </div>
+          <div id="summaryBox" class="summary"></div>
+          <p id="summaryNote" class="hint"></p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>DocScribe &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
